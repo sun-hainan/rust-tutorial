@@ -390,9 +390,9 @@ fn iterator_collectors() {
     println!("evens: {:?}, odds: {:?}", evens, odds);
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 集合
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - Vec<T>: 动态数组，push/pop O(1)
 //   - HashMap<K, V>: 哈希映射，O(1) 平均
@@ -403,12 +403,6 @@ fn iterator_collectors() {
 //   - BTreeMap/TreeSet: 有序映射/集合
 //   - 标准库统一通过 Iterator trait 支持链式调用
 
-// Lua:
-//   - table: 唯一的复合类型，可作数组/映射/集合
-//   - 无 HashMap，但 table 可以模拟
-//   - 无 Set，用 table.insert(t, value) + 遍历去重
-//   - 数组部分用数字索引，映射部分用字符串索引
-
 // Python:
 //   - list: 动态数组，append O(1)，中间插入 O(n)
 //   - dict: 哈希映射，O(1) 平均
@@ -416,6 +410,29 @@ fn iterator_collectors() {
 //   - collections.deque: 双端队列
 //   - heapq: 堆（需要手动用 list 实现）
 //   - collections.OrderedDict: 有序字典（Python 3.7+ 保持插入顺序）
+
+// Lua:
+//   - table: 唯一的复合类型，可作数组/映射/集合
+//   - 无 HashMap，但 table 可以模拟
+//   - 无 Set，用 table.insert(t, value) + 遍历去重
+//   - 数组部分用数字索引，映射部分用字符串索引
+
+// Go:
+//   - slice: 动态数组（头指针+长度+容量）
+//   - map: 哈希映射
+//   - struct: 结构体（组合而非继承）
+//   - list: 无内置双向链表
+//   - container/list: 双向链表
+//   - 排序用 sort 包
+
+// C++:
+//   - std::vector: 动态数组
+//   - std::unordered_map: 哈希映射
+//   - std::unordered_set: 哈希集合
+//   - std::deque: 双端队列
+//   - std::priority_queue: 堆（基于 binary_heap）
+//   - std::list: 双向链表
+//   - std::map/std::set: 有序红黑树
 
 fn compare_collections() {
     println!("=== 三语言集合对比 ===");
@@ -434,13 +451,14 @@ fn compare_collections() {
     // Python: 需要可哈希（自定义类要实现 __hash__ 和 __eq__）
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 实现一个词频统计程序（统计文件中的单词出现频率）
-// 2. 用 VecDeque 实现一个滑动窗口最大值函数
-// 3. 实现一个 LRU 缓存（用 HashMap + VecDeque）
-// 4. 用 BTreeMap 实现一个区间的并集合并函数
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 实现一个词频统计程序，统计给定文本中每个单词出现的频率（用 HashMap）
+// 2. 用 VecDeque 实现一个滑动窗口最大值函数，输入 [1,3,-1,-3,5,3,6,7] 和 k=3，输出 [3,3,5,5,6,7]
+// 3. 实现一个 LRU 缓存（用 HashMap + LinkedList 或 VecDeque），包含 get 和 put 方法
+// 4. 用 BTreeMap 实现一个区间合并函数，合并重叠的区间 [[1,3],[2,6],[8,10],[15,18]] → [[1,6],[8,10],[15,18]]
+// 5. 对比 Vec 和 LinkedList 的性能，说明各自适合的场景
 
 fn main() {
     println!("=== 模块八：集合框架 ===");

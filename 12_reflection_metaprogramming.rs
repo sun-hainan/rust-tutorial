@@ -311,9 +311,9 @@ fn instrumentation_macro() {
     println!("跟踪宏示例完成");
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 元编程
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - 反射能力有限（Any/TypeId）
 //   - 强大的宏系统（编译时代码生成）
@@ -321,17 +321,29 @@ fn instrumentation_macro() {
 //   - PhantomData 处理类型标记
 //   - proc_macro 实现编译器扩展
 
+// Python:
+//   - 完整反射：type(), getattr, setattr
+//   - 装饰器（decorator）是元编程核心
+//   - exec/eval 动态执行代码
+//   - dataclasses/attrs 自动生成代码
+
 // Lua:
 //   - 完整反射：type() 返回类型，getmetatable/setmetatable
 //   - 动态执行：loadstring/load
 //   - metatable 链实现行为修改
 //   - 非常灵活的元编程能力
 
-// Python:
-//   - 完整反射：type(), getattr, setattr
-//   - 装饰器（decorator）是元编程核心
-//   - exec/eval 动态执行代码
-//   - dataclasses/attrs 自动生成代码
+// Go:
+//   - 反射有限：reflect 包
+//   - 无宏，通过接口和代码生成（go generate）
+//   - 动态执行困难（无 eval）
+//   - 标签（struct tag）用于元数据
+
+// C++:
+//   - 模板元编程（template metaprogramming）
+//   - type_traits 提供类型信息
+//   - constexpr 编译时计算
+//   - 无运行时间反射（需要手动实现）
 
 fn compare_metaprogramming() {
     println!("=== 三语言元编程对比 ===");
@@ -346,13 +358,14 @@ fn compare_metaprogramming() {
     // Lua: 完整（type, getmetatable）
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 实现一个命令注册表，支持动态注册和执行闭包
-// 2. 用 PhantomData 实现一个"拥有某种类型的所有权"的结构体
-// 3. 实现一个 const 泛型 Vec 的长度检查
-// 4. 解释 derive 宏是如何工作的，编写一个简单的 derive
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 实现一个命令注册表，支持动态注册和执行闭包，通过 HashMap<String, Box<dyn Fn>> 实现
+// 2. 用 PhantomData 实现一个"拥有某种类型的所有权"的结构体，解释为什么需要它
+// 3. 实现一个 const 泛型 Vec，编译时检查长度不超过固定值
+// 4. 解释 derive 宏是如何工作的，编写一个简单的 #[derive(Debug)] 替代品
+// 5. 用 Any trait 实现一个类型注册表，根据类型 ID 动态创建对象实例
 
 fn main() {
     println!("=== 模块十二：反射与元编程 ===");

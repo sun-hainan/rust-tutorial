@@ -400,25 +400,36 @@ fn documentation() {
     println!("$ cargo doc --no-deps");
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 工程化
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - Cargo：内置构建/包管理
 //   - Rustfmt：代码格式化
 //   - Clippy：Linting
 //   - 编译时检查多，运行时错误少
 
-// Lua:
-//   - LuaRocks：包管理器
-//   - 无内置格式化/Lint
-//   - 动态类型，错误在运行时发现
-
 // Python:
 //   - pip/poetry/conda：包管理
 //   - black/isort/ruff：格式化/Lint
 //   - pytest/mypy：测试/类型检查
 //   - 类型注解（Python 3.5+）
+
+// Lua:
+//   - LuaRocks：包管理器
+//   - 无内置格式化/Lint
+//   - 动态类型，错误在运行时发现
+
+// Go:
+//   - go mod：内置模块管理
+//   - gofmt：格式化
+//   - go vet：静态分析
+//   - testing：测试框架
+
+// C++:
+//   - CMake/conan：构建和包管理
+//   - clang-format：格式化
+//   - 编译时检查多，头文件管理复杂
 
 fn compare_engineering() {
     println!("=== 三语言工程化对比 ===");
@@ -434,13 +445,14 @@ fn compare_engineering() {
     println!("| CI/CD       | GitHub Actions | GitHub Actions | 通用 |");
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 实现一个 Builder 模式的 HTTP 请求构建器
-// 2. 编写一个带性能测试的 benchmark（使用 criterion）
-// 3. 配置 GitHub Actions CI，包含 test/clippy/fmt
-// 4. 解释 RAII 模式在 Rust 中的应用（File/锁/连接）
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 实现一个 Builder 模式的 HTTP 请求构建器，支持链式调用设置 method/url/headers/body
+// 2. 编写一个带性能测试的 benchmark，使用 criterion 测量两种排序算法的性能差异
+// 3. 配置 GitHub Actions CI，包含 test/clippy/fmt 三个 job，解释每个 job 的作用
+// 4. 解释 RAII 模式在 Rust 中的应用（File/锁/连接），说明它如何避免资源泄漏
+// 5. 用 Cargo workspace 创建一个包含 lib 和 bin 的多 crate 项目
 
 fn main() {
     println!("=== 模块十六：工程化与设计思想 ===");

@@ -455,25 +455,37 @@ fn event_bus() {
     println!("\n事件总线示例完成");
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 事件系统
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - 观察者：trait + Box<dyn Observer>
 //   - EventEmitter：HashMap<String, Vec<Box<dyn Fn>>>
 //   - Channel：mpsc 多生产者单消费者
 //   - 异步流：futures::StreamExt
 
-// Lua:
-//   - 无内置事件系统
-//   - 通过 table + function 实现
-//   - OpenResty 有 nginx.context 推荐事件
-
 // Python:
 //   - asyncio：异步流、事件循环
 //   - blinker：信号/事件
 //   - pydispatcher：发布-订阅
 //   - typed dispatch（Python 3.10+）
+
+// Lua:
+//   - 无内置事件系统
+//   - 通过 table + function 实现
+//   - OpenResty 有 nginx.context 推荐事件
+
+// Go:
+//   - channel 实现消息传递
+//   - sync.RWMutex 实现观察者
+//   - context 用于取消和超时
+//   - 无内置 event emitter
+
+// C++:
+//   - 信号槽：boost::signals2
+//   - 观察者模式：手动实现或 boost
+//   - 事件系统：Qt 的信号槽机制
+//   - 无标准事件库
 
 fn compare_event_systems() {
     println!("=== 三语言事件系统对比 ===");
@@ -487,13 +499,14 @@ fn compare_event_systems() {
     println!("| 中间件        | tower      | wsgi middleware| 无原生      |");
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 实现一个带 once 功能的事件发射器
-// 2. 实现一个线程安全的 EventBus（Arc + Mutex）
-// 3. 用 channel 实现一个生产者-消费者消息队列
-// 4. 解释响应式流（Stream）和普通迭代器的核心区别
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 实现一个带 once 功能的事件发射器，once 注册的处理器只触发一次就自动移除
+// 2. 实现一个线程安全的 EventBus（用 Arc<Mutex<_>> 包装），支持多线程订阅和发布
+// 3. 用 channel 实现一个生产者-消费者消息队列，支持多个生产者、多个消费者
+// 4. 解释响应式流（Stream）和普通迭代器的核心区别，说明各自适合的场景
+// 5. 用 Observer 模式实现一个 GUI 事件系统，包含 Click/MouseMove/KeyPress 事件
 
 fn main() {
     println!("=== 模块十七：信息分发与事件系统 ===");

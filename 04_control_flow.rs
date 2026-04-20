@@ -448,9 +448,9 @@ fn if_let_while_let() {
     }
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - if/else 是表达式，可以返回值，所有分支类型必须一致
 //   - match 是模式匹配，支持字面量/范围/枚举/结构体/守卫
@@ -459,15 +459,6 @@ fn if_let_while_let() {
 //   - panic/Result/Option 分离了不可恢复错误和可恢复错误
 //   - ? 运算符简化错误传播
 
-// Lua:
-//   - if/elseif/else 是语句，不是表达式（不能直接返回值）
-//   - 没有 match，用 if-elseif-else 链代替
-//   - while/repeat/for 三种循环，没有 C 风格的 for 循环
-//   - repeat...until 是后条件循环（至少执行一次）
-//   - 没有 break/continue，用 goto 或包装函数代替
-//   - 错误处理用 pcall/xpcall + 手动返回值
-//   - 不用 {} 缩进表示代码块，用 end 关键字
-
 // Python:
 //   - if/elif/else 是语句，不是表达式
 //   - 没有 match（3.10+ 有 match-case，结构类似）
@@ -475,6 +466,30 @@ fn if_let_while_let() {
 //   - 有 break/continue，标签循环用嵌套函数或 itertools
 //   - 异常用 try/except/finally/raise
 //   - 有三目运算符：x if cond else y
+
+// Lua:
+//   - if/elseif/else 是语句，不是表达式（不能直接返回值）
+//   - 没有 match，用 if-elseif-else 链代替
+//   - while/repeat/for 三种循环，没有 C 风格的 for 循环
+//   - repeat...until 是后条件循环（至少执行一次）
+//   - 没有 break/continue，用 goto 或包装函数代替
+//   - 错误处理用 pcall/xpcall + 手动返回值
+
+// Go:
+//   - if/else 是语句，不是表达式
+//   - switch 比 C 更安全（自动 break），可做表达式
+//   - for 是唯一循环关键字（while 用 for 代替）
+//   - break/continue 可带标签跳转
+//   - 没有异常，用 error 接口处理错误
+//   - defer 用于资源清理
+
+// C++:
+//   - if/else 是语句，条件运算符 ?: 是表达式
+//   - switch 语句（需手动 break）
+//   - for/while/do-while 三种循环
+//   - break/continue 控制循环
+//   - 异常用 try/catch/throw
+//   - RAII 用于资源管理
 
 fn compare_control_flow() {
     println!("=== 三语言流程控制对比 ===");
@@ -490,13 +505,14 @@ fn compare_control_flow() {
     // Python: for 循环直接遍历引用，修改列表会影响迭代
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 用 match 实现一个简易计算器（输入 "3 + 4" 输出 7）
-// 2. 实现一个函数，将 Option<i32> 转换为 Result<i32, String>
-// 3. 用迭代器链找出 100 以内所有既是 3 又是 5 的倍数的数
-// 4. 解释为什么 Rust 的 match 要穷尽检查，这和 Java switch 有什么区别
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 用 match 实现一个简易计算器（输入 "3 + 4" 输出 7），包含加/减/乘/除
+// 2. 实现一个函数，将 Option<i32> 转换为 Result<i32, String>，Some 转 Ok，None 转 Err
+// 3. 用迭代器链找出 100 以内所有既是 3 又是 5 的倍数的数（即 15 的倍数）
+// 4. 解释为什么 Rust 的 match 要穷尽检查，这和 Java switch 有什么区别？
+// 5. 实现一个 while let 循环，从 VecDeque 中不断取出元素直到为空
 
 fn main() {
     println!("=== 模块四：流程控制 ===");

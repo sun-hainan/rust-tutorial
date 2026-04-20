@@ -305,9 +305,9 @@ fn option_handling() {
     println!("Charlie's score (default 0) = {}", name);
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - let 声明变量，默认不可变，mut 可变
 //   - 所有权：每个值唯一所有者，move 语义
@@ -315,6 +315,14 @@ fn option_handling() {
 //   - Option<T> 替代 null，编译时确保空值处理
 //   - 基本类型：i32/u32/f64/bool/char，复合：tuple/struct/enum
 //   - 类型转换必须显式 as，无隐式转换
+
+// Python:
+//   - x = value，动态类型，可重新赋值
+//   - 垃圾回收（引用计数 + 标记清除）
+//   - 无借用概念，但可变对象可以通过引用传递
+//   - None 表示空值（NoneType）
+//   - 基本类型：int/float/bool/str/complex，复合：list/dict/tuple/set
+//   - 类型转换可用 int()/str()/float()，但字符串"123" + 1 会报错
 
 // Lua:
 //   - local x = value，无类型声明，变量可重新赋值任何类型
@@ -324,13 +332,21 @@ fn option_handling() {
 //   - 基本类型：nil/boolean/number/string/function/table/userdata/thread
 //   - 类型转换自动进行（"123" + 1 = 124）
 
-// Python:
-//   - x = value，动态类型，可重新赋值
-//   - 垃圾回收（引用计数 + 标记清除）
-//   - 无借用概念，但可变对象可以通过引用传递
-//   - None 表示空值（NoneType）
-//   - 基本类型：int/float/bool/str/complex，复合：list/dict/tuple/set
-//   - 类型转换可用 int()/str()/float()，但字符串"123" + 1 会报错
+// Go:
+//   - var x int = 0，var 声明，:= 短声明，默认零值
+//   - 垃圾回收（并发标记清扫）
+//   - 指针 &T，T 是引用类型，无借用概念
+//   - nil 表示空值（指针/接口/slice/map/channel/function）
+//   - 基本类型：int/float/bool/string，复合：array/slice/map/struct
+//   - 隐式转换不存在，必须显式类型转换
+
+// C++:
+//   - int x = 5，const int x = 5，类型必须声明
+//   - 无 GC，手动内存管理或智能指针（unique_ptr/shared_ptr）
+//   - 引用 T& 类似于借用，左值引用
+//   - nullptr 表示空指针（C++11）
+//   - 基本类型：int/float/double/bool/char，复合：array/struct/class
+//   - 隐式类型转换可能发生（需注意安全）
 
 fn compare_rust_lua_python() {
     println!("=== 三语言对比：变量与类型 ===");
@@ -360,13 +376,14 @@ fn compare_rust_lua_python() {
     }
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 解释为什么 Rust 不用 GC 也能保证内存安全
-// 2. 编写一个函数，接收两个 &str，返回较长的字符串（附生命周期标注）
-// 3. 将 Option<i32> 的 Some 乘以 2，None 转为 0，写出两种写法
-// 4. 解释 i32 和 i64 的区别，以及 usize 的作用
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 解释为什么 Rust 不用 GC 也能保证内存安全，画图说明所有权模型的工作流程
+// 2. 编写一个函数，接收两个 &str，返回较长的字符串（附生命周期标注 'a）
+// 3. 将 Option<i32> 的 Some 乘以 2，None 转为 0，写出 match 和 if let 两种写法
+// 4. 解释 i32 和 i64 的区别，以及 usize 的作用（结合平台差异说明）
+// 5. 实现一个自定义枚举 Status，包含 Ok(String) 和 Err(i32)，并用 match 处理
 
 fn main() {
     println!("=== 模块二：变量与数据类型 ===");

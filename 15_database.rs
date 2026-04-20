@@ -228,9 +228,9 @@ fn nosql_support() {
     println!("coll.insert_one(doc! {{ \"name\": \"Alice\", \"age\": 30 }}).await?;");
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 数据库
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - rusqlite：SQLite
 //   - diesel：ORM（编译时检查）
@@ -238,18 +238,31 @@ fn nosql_support() {
 //   - redis-rs：Redis
 //   - 类型安全，连接池支持
 
-// Lua:
-//   - luasql：SQLite/MySQL/PostgreSQL
-//   - redis-lua：Redis
-//   - LuaSQL 使用方式类似
-//   - 动态类型，简单易用
-
 // Python:
 //   - sqlite3：内置
 //   - SQLAlchemy：ORM
 //   - psycopg2/asyncpg：PostgreSQL
 //   - redis-py：Redis
 //   - PyMongo：MongoDB
+
+// Lua:
+//   - luasql：SQLite/MySQL/PostgreSQL
+//   - redis-lua：Redis
+//   - LuaSQL 使用方式类似
+//   - 动态类型，简单易用
+
+// Go:
+//   - database/sql：标准 SQL 接口
+//   - GORM：ORM
+//   - pgx：PostgreSQL 驱动
+//   - go-redis：Redis
+//   - mgo：MongoDB
+
+// C++:
+//   - libpq（PostgreSQL）、mysql-connector-cpp
+//   - ODBC 数据库接口
+//   - SOCI/C++ 数据库抽象层
+//   - 类型安全靠手动实现
 
 fn compare_databases() {
     println!("=== 三语言数据库对比 ===");
@@ -264,13 +277,14 @@ fn compare_databases() {
     println!("| 类型安全   | 编译时       | 运行时           | 无           |");
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 用 rusqlite 创建表、插入数据、查询数据
-// 2. 实现一个事务包装函数，确保操作的原子性
-// 3. 解释 PreparedStatement 的原理和防注入机制
-// 4. 对比 Diesel 和 SQLx 的设计理念
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 用 rusqlite 创建 users 表、插入数据、查询数据（提供完整可运行代码）
+// 2. 实现一个事务包装函数 execute_in_transaction，确保操作的原子性（失败自动回滚）
+// 3. 解释 PreparedStatement 的原理，以及它如何防止 SQL 注入攻击
+// 4. 对比 Diesel 和 SQLx 的设计理念，解释编译时检查 vs 运行时检查的权衡
+// 5. 设计一个数据库连接池，实现 get_connection 和 release_connection 方法
 
 fn main() {
     println!("=== 模块十五：数据库编程 ===");

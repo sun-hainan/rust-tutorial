@@ -260,25 +260,36 @@ fn websocket_intro() {
     println!("// let (write, read) = ws_stream.split();");
 }
 
-// ============================================================
-// 【对比】Rust vs Lua vs Python 网络
-// ============================================================
+// ================================================================
+// 【对比】Rust vs Python vs Lua vs Go vs C++
+// ================================================================
 // Rust:
 //   - 标准库提供 TcpListener/TcpStream/UdpSocket
 //   - 同步 IO，异步需要 tokio/async-std
 //   - HTTP 需要第三方库（reqwest）
 //   - 类型安全，编译时检查
 
-// Lua:
-//   - luasocket 提供同步 socket
-//   - lua-nginx 支持异步
-//   - 无内置 HTTP，需要库
-
 // Python:
 //   - socket 标准库支持 TCP/UDP
 //   - urllib/requests 提供 HTTP
 //   - asyncio 提供异步网络
 //   - aiohttp/httpx 异步 HTTP
+
+// Lua:
+//   - luasocket 提供同步 socket
+//   - lua-nginx 支持异步
+//   - 无内置 HTTP，需要库
+
+// Go:
+//   - net 标准库提供 TCP/UDP
+//   - net/http 提供 HTTP 服务器和客户端
+//   - 原生异步支持（goroutine）
+//   - context 用于超时控制
+
+// C++:
+//   - asio 库提供异步网络（Boost.Asio / standalone asio）
+//   - socket API 需要平台适配
+//   - HTTP 需要第三方库（curl, libcurl）
 
 fn compare_networking() {
     println!("=== 三语言网络编程对比 ===");
@@ -299,13 +310,14 @@ fn compare_networking() {
     // Lua: lua-http / luaresty
 }
 
-// ============================================================
-// 练习题
-// ============================================================
-// 1. 实现一个 TCP echo 服务器（回显客户端发送的内容）
-// 2. 实现一个 UDP 聊天程序（多客户端）
-// 3. 写一个函数获取指定 URL 的 HTTP 状态码
-// 4. 实现一个简单的端口扫描器（并行检测多个端口）
+// ================================================================
+// 【练习题】
+// ================================================================
+// 1. 实现一个 TCP echo 服务器，回显客户端发送的每一行内容
+// 2. 实现一个 UDP 聊天程序，支持多个客户端互相发送消息（服务器转发）
+// 3. 写一个函数获取指定 URL 的 HTTP 状态码（使用 std::net TcpStream 手动构造请求）
+// 4. 实现一个简单的端口扫描器，并行检测多个端口（使用 thread spawn）
+// 5. 解释 TCP 和 UDP 的区别，以及各自的适用场景（至少3个例子）
 
 fn main() {
     println!("=== 模块十三：网络编程 ===");
